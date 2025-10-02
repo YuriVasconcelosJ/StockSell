@@ -36,8 +36,11 @@ public class Funcionario implements Serializable{
     private LocalDate dataAdmissao;
 
     @Enumerated(EnumType.STRING)
-    @Column(nullable = true)
+    @Column(name = "cargo",nullable = false)
     private Role cargo;
+
+    @Column(name = "senha", nullable = false)
+    private String senha;
 
     public Funcionario() {
     }
@@ -102,7 +105,6 @@ public class Funcionario implements Serializable{
     public void setDataAdmisao(LocalDate dataAdmissao) {
         this.dataAdmissao = dataAdmissao;
     }
-
     public Role getCargo() {
         return cargo;
     }
@@ -110,5 +112,6 @@ public class Funcionario implements Serializable{
     public void setCargo(Role cargo) {
         this.cargo = cargo;
     }
+
     
 }
