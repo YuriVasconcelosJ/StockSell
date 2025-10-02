@@ -3,8 +3,11 @@ package br.com.projetovenda.venda.entity;
 import java.io.Serializable;
 import java.time.LocalDate;
 
+import br.com.projetovenda.venda.enums.Role;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -31,6 +34,10 @@ public class Funcionario implements Serializable{
 
     @Column(name = "data_admissao")
     private LocalDate dataAdmissao;
+
+    @Enumerated(EnumType.STRING)
+    @Column(nullable = true)
+    private Role cargo;
 
     public Funcionario() {
     }
@@ -96,5 +103,12 @@ public class Funcionario implements Serializable{
         this.dataAdmissao = dataAdmissao;
     }
 
+    public Role getCargo() {
+        return cargo;
+    }
+
+    public void setCargo(Role cargo) {
+        this.cargo = cargo;
+    }
     
 }
