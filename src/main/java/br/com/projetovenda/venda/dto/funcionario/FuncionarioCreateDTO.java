@@ -2,6 +2,8 @@ package br.com.projetovenda.venda.dto.funcionario;
 
 import java.time.LocalDate;
 
+import br.com.projetovenda.venda.enums.Role;
+import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.PastOrPresent;
@@ -16,10 +18,11 @@ public class FuncionarioCreateDTO {
     @Size(max = 150)
     private String nome;
 
-    @Pattern(regexp = "\\d{14}", message = "CPF deve conter 14 dígitos")
+    @Pattern(regexp = "\\d{11}", message = "CPF deve conter 11 dígitos")
     private String cpf;
 
     @NotBlank
+    @Email(message = "E-mail inválido")
     @Size(max = 100)
     private String email;
 
@@ -34,6 +37,9 @@ public class FuncionarioCreateDTO {
     @PastOrPresent(message = "A data não pode ser futura.")
     private LocalDate dataAdmissao;
 
+    @NotNull(message = "O cargo do empregador é obrigatório")
+    private Role cargo;
+
     public FuncionarioCreateDTO() {
     }
 
@@ -42,13 +48,15 @@ public class FuncionarioCreateDTO {
             String email,
             String senha,
             String telefone,
-            LocalDate dataAdmissao) {
+            LocalDate dataAdmissao,
+            Role cargo) {
         this.nome = nome;
         this.cpf = cpf;
         this.email = email;
         this.senha = senha;
         this.telefone = telefone;
         this.dataAdmissao = dataAdmissao;
+        this.cargo = cargo;
     }
 
     public String getNome() {
@@ -97,6 +105,14 @@ public class FuncionarioCreateDTO {
 
     public void setDataAdmissao(LocalDate dataAdmissao) {
         this.dataAdmissao = dataAdmissao;
+    }
+
+    public Role getCargo() {
+        return cargo;
+    }
+
+    public void setCargo(Role cargo) {
+        this.cargo = cargo;
     }
 
 }

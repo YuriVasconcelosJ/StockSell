@@ -2,14 +2,18 @@ package br.com.projetovenda.venda.dto.autenticacao;
 
 public class AuthResponseDTO {
 
-    private String token;
+    private String mensagem;
 
-    public AuthResponseDTO(String token) {
-        this.token = token;
+    public AuthResponseDTO(String mensagem) {
+        this.mensagem = mensagem;
     }
 
-    public String getToken() {
-        return token;
+    public String getMensagem() {
+        return mensagem;
+    }
+
+    public void setMensagem(String mensagem) {
+        this.mensagem = mensagem;
     }
 
 }
